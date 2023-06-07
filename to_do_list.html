@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+    body{
+        background-color: #B33771;
+        font-size: 1.2rem;
+    }
+    main{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color:#f5f6fa ;
+
+    }
+    .box{
+        margin-top: 2rem;
+        background: #f5f6fa;
+        width: 40%;
+        min-height: 20rem;
+        padding:2px;
+        box-shadow: 0 0 10px black;
+    }
+    #inp{
+        width: 93.3%;
+        height: 1rem;
+        padding:0.5rem 1rem ;
+        border-radius: 5px;
+        font-size: 1.2rem;
+    }
+    
+    .box ul li{
+        background-color: #192a56;
+        list-style: none;
+        padding: 10px;
+        color: white;
+        margin: 0.5rem 1rem;
+        width: 89%;
+        padding-right: 15px;
+        position: relative;
+        border-radius: 5px;
+        text-align: justify;
+        min-height: 1rem;
+
+    }
+    .to-do-box{
+        /* background-color: brown; */
+        padding: 2px;
+        margin: 5px;
+
+    }
+   .box ul i {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: 1.2rem;
+        font-family: sans-serif;
+        padding: 5px;
+
+    }
+    .desable{
+        background-color:#7f8fa6 !important;
+        color: black;
+        text-decoration: line-through;
+    }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>ADD YOUR ITEMS</h1>
+        <div class="box">
+            <input type="text" id="inp" autofocus>
+            <ul class="to-do-box">
+                <!-- <li class="list"> list it.  facilis.
+                    <i class="">x</i>
+                </li> -->
+            </ul>
+        </div>
+    </main>
+
+
+    <script>
+        const item = document.querySelector("#inp")
+        const toDoBox = document.querySelector(".to-do-box")
+
+        item.addEventListener("keyup", function (event) {
+            if(event.key == 'Enter'){
+                addToDo(this.value);
+                this.value = ""
+            };
+        })
+
+        const addToDo = (item)=>{
+            const listitem = document.createElement("li");
+            listitem.innerHTML = `
+                ${item}
+                    <i >x</i>
+                `;
+
+            listitem.addEventListener('click', function () {
+                this.classList.toggle("desable")
+            })
+            listitem.querySelector("i").addEventListener("click",function(){
+            listitem.remove()
+        })
+
+            toDoBox.appendChild(listitem)
+
+        }
+
+      
+    </script>
+</body>
+</html>
